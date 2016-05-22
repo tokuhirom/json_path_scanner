@@ -1,6 +1,8 @@
 package json_path_scanner
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"testing"
 )
@@ -91,5 +93,29 @@ func TestMap(t *testing.T) {
 	}
 	if p.Value != "fuga" {
 		t.Fatalf("Value should be 'fuga' but %s", p.Value)
+	}
+}
+
+func TestSynopsis(t *testing.T) {
+	ch := make(chan PathValue)
+	go func() {
+		var m interface{}
+		err := json.Unmarshal([]byte(`{
+			"hoge":"fuga",
+			"x":[
+				{
+					"y": 3,
+					"z": [1,2,3]
+				}
+			]
+		}`), &m)
+		if err != nil {
+			log.Fatal(err)
+		}
+		Scan(m, ch)
+	}()
+
+	for p := range ch {
+		fmt.Printf("%s => %s\n", p.Path, p.Value)
 	}
 }
