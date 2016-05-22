@@ -1,4 +1,5 @@
 # json\_path\_scanner
+[![CircleCI](https://circleci.com/gh/tokuhirom/json_path_scanner.svg?style=svg)](https://circleci.com/gh/tokuhirom/json_path_scanner)
 
 Scan JSON and returns list of JSON path and value.
 
