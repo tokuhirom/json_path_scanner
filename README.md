@@ -37,7 +37,7 @@ func main() {
 	}()
 
 	for p := range ch {
-		fmt.Printf("%s => %s\n", p.Path, p.Value)
+		fmt.Printf("%s => %v\n", p.Path, p.Value)
 	}
 }
 ```
@@ -45,10 +45,10 @@ func main() {
 Output:
 
     $.hoge => fuga
-    $.x[0].z[0] => %!s(float64=1)
-    $.x[0].z[1] => %!s(float64=2)
-    $.x[0].z[2] => %!s(float64=3)
-    $.x[0].y => %!s(float64=3)
+    $.x[0].z[0] => 1
+    $.x[0].z[1] => 2
+    $.x[0].z[2] => 3
+    $.x[0].y => 3
 
 ## LICENSE
 
