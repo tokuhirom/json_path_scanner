@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	ch := make(chan json_path_scanner.PathValue)
+	ch := make(chan *json_path_scanner.PathValue)
 	go func() {
 		var m interface{}
 		err := json.Unmarshal([]byte(`{
@@ -27,6 +27,6 @@ func main() {
 	}()
 
 	for p := range ch {
-		fmt.Printf("%s => %s\n", p.Path, p.Value)
+		fmt.Printf("%s => %v\n", p.Path, p.Value)
 	}
 }

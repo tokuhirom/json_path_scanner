@@ -10,19 +10,19 @@ type PathValue struct {
 	Value interface{}
 }
 
-func newPathValue(key string, value interface{}) PathValue {
-	return PathValue{
+func newPathValue(key string, value interface{}) *PathValue {
+	return &PathValue{
 		Path:  key,
 		Value: value,
 	}
 }
 
-func Scan(value interface{}, ch chan<- PathValue) {
+func Scan(value interface{}, ch chan<- *PathValue) {
 	defer close(ch)
 	scanJson("$", value, ch)
 }
 
-func scanJson(label string, value interface{}, ch chan<- PathValue) {
+func scanJson(label string, value interface{}, ch chan<- *PathValue) {
 	switch value.(type) {
 	case int, float64, string, nil:
 		ch <- newPathValue(label, value)
