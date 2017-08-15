@@ -24,7 +24,7 @@ func Scan(value interface{}, ch chan<- *PathValue) {
 
 func scanJson(label string, value interface{}, ch chan<- *PathValue) {
 	switch value.(type) {
-	case int, float64, string, nil:
+	case int, float64, string, bool, nil:
 		ch <- newPathValue(label, value)
 	case map[string]interface{}:
 		m := value.(map[string]interface{})
